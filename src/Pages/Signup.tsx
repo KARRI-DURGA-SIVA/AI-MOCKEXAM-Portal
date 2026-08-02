@@ -1,0 +1,82 @@
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { FcGoogle } from 'react-icons/fc'
+
+function Signup() {
+    const navigate = useNavigate()
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    return (
+        <div className="min-h-screen bg-white flex">
+            <div className="w-5/3 bg-blue-500 flex flex-col items-center justify-center p-8">
+                <h1 className="text-5xl text-white font-extrabold">
+                    AI EXAM PORTAL
+                </h1>
+                <p className="mt-4 text-white text-xl">
+                    Welcome Back
+                </p>
+            </div>
+            <div className="w-5/4 flex flex-col items-center justify-center p-8">
+                <h2 className="font-poppins text-4xl font-extrabold text-blue-600 text-center mb-8 -translate-y-10">
+                    Sign Up
+                </h2>
+
+                <div className="mb-4">
+                    <label className="sr-only" htmlFor="name">Name</label>
+                    <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        placeholder="Enter your name"
+                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="sr-only" htmlFor="email">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        placeholder="Enter your email"
+                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="sr-only" htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        placeholder="Enter your password"
+                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    />
+                </div>
+                <button
+                    className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700"
+                    onClick={() => navigate('/dashboard')}
+                >
+                    Sign Up
+                </button>
+                <button
+                    onClick={() => navigate('/')}
+                    className="w-80 max-w-full mt-4 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 bg-white hover:bg-gray-100 transition"
+                >
+                    <FcGoogle size={22} />
+                    <span className="font-medium text-gray-700">Continue with Google</span>
+                </button>
+                <button
+                    className="text-blue-600 hover:text-blue-800 transition justify-center items-center mt-4 flex gap-2"
+                    onClick={() => navigate('/login')}
+                >
+                    Already have an account? Login
+                </button>
+            </div>
+        </div>
+    )
+}
+export default Signup;
