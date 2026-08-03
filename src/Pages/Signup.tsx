@@ -100,12 +100,18 @@ function Signup() {
                     <FcGoogle size={22} />
                     <span className="font-medium text-gray-700">Continue with Google</span>
                 </button>
-                <button
-                    className="text-blue-600 hover:text-blue-800 transition justify-center items-center mt-4 flex gap-2"
-                    onClick={() => navigate('/login')}
-                >
-                    Already have an account? Login
-                </button>
+                <div className="mt-4 flex items-center justify-center text-sm">
+    <span className="text-gray-700">
+        Already have an account?
+    </span>
+
+    <button
+        onClick={() => navigate("/login")}
+        className="ml-2 text-blue-600 font-medium hover:text-blue-800 hover:underline -ml-1"
+    >
+        Login
+    </button>
+</div>
             </div>
         </div>
     )

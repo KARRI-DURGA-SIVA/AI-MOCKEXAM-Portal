@@ -109,13 +109,19 @@ function Login() {
                                 Continue with Google
                             </span>
                         </button>
+                                <div className="mt-4 flex items-center justify-center text-sm">
+    <span className="text-gray-700">
+        Don't have an account?
+    </span>
 
-                        <button
-                            className="mt-4 text-blue-600 hover:text-blue-800"
-                            onClick={() => navigate("/signup")}
-                        >
-                            Don't have an account? Sign up
-                        </button>
+    <button
+        onClick={() => navigate("/signup")}
+        className="ml-2 text-blue-600 font-medium hover:text-blue-800 hover:underline"
+    >
+        Sign Up
+    </button>
+</div>
+                        
                     </>
                 ) : (
                     <>
