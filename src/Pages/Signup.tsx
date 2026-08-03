@@ -25,7 +25,7 @@ function Signup() {
                     Sign Up
                 </h2>
 
-                  <div className="relative w-80 mb-8">
+                  <div className="relative w-80 mb-10">
                             <label
                                 htmlFor="name"
                                 className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
@@ -42,7 +42,7 @@ function Signup() {
                                 className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
-                    <div className="relative w-80 mb-8">
+                    <div className="relative w-80 mb-10">
                             <label
                                 htmlFor="email"
                                 className="absolute -top-6 left-0 text-sm font-medium text-gray-700"

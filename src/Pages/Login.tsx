@@ -46,7 +46,7 @@ function Login() {
                             />
                         </div>
 
-                        <div className="relative w-80 mb-6">
+                        <div className="relative w-80 mb-8 mt-1">
                             <label
                                 htmlFor="password"
                                 className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
