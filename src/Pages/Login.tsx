@@ -129,28 +129,62 @@ function Login() {
                                 placeholder="Enter your email"
                                 className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
-                        </div>
-                        <div className="mb-4 w-80">
-                            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                        </div><br></br>
+                        <div className="relative w-80 mb-6">
+                            <label
+                                htmlFor="password"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                New Password
+                            </label>
+
                             <input
-                                id="newPassword"
-                                type="password"
-                                value={newPassword}
-                                onChange={(event) => setNewPassword(event.target.value)}
-                                placeholder="Enter new password"
-                                className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                                placeholder="Enter New password"
+                                className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
-                        </div>
-                        <div className="mb-6 w-80">
-                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+
+                            {password.length > 0 && (
+                                <button
+                                    type="button"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
+                                >
+                                    <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                                </button>
+                            )}
+                        </div><br></br>
+                        <div className="relative w-80 mb-6">
+                            <label
+                                htmlFor="password"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Confirm Password
+                            </label>
+
                             <input
-                                id="confirmPassword"
-                                type="password"
-                                value={confirmPassword}
-                                onChange={(event) => setConfirmPassword(event.target.value)}
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
                                 placeholder="Confirm new password"
-                                className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
+
+                            {password.length > 0 && (
+                                <button
+                                    type="button"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
+                                >
+                                    <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                                </button>
+                            )}
                         </div>
                         <button
                             className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700 mb-5"
