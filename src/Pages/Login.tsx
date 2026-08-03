@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 function Login() {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
-    const [name, setName] = useState('admin')
+    const [email, setEmail] = useState('admin')
     const [password, setPassword] = useState('password')
     const [forgotMode, setForgotMode] = useState(false)
     const [resetEmail, setResetEmail] = useState('')
@@ -30,17 +30,17 @@ function Login() {
                     <>
                         <div className="relative w-80 mb-8">
                             <label
-                                htmlFor="name"
+                                htmlFor="email"
                                 className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
                             >
                                 Email
                             </label>
 
                             <input
-                                id="name"
-                                type="text"
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
                                 placeholder="Enter your Email"
                                 className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
@@ -74,7 +74,7 @@ function Login() {
                                 </button>
                             )}
                         </div>
-                   <div className="w-80 flex justify-end mb-4 -ml-62">
+                        <div className="w-80 flex justify-end mb-4 -ml-61">
     <label className="flex items-center cursor-pointer">
         <input
             type="checkbox"
@@ -119,37 +119,37 @@ function Login() {
                     </>
                 ) : (
                     <>
-                        <div className="mb-4">
-                            <label className="sr-only" htmlFor="resetEmail">Email</label>
+                        <div className="mb-4 w-80">
+                            <label htmlFor="resetEmail" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                             <input
                                 id="resetEmail"
                                 type="email"
                                 value={resetEmail}
                                 onChange={(event) => setResetEmail(event.target.value)}
                                 placeholder="Enter your email"
-                                className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
-                        <div className="mb-4">
-                            <label className="sr-only" htmlFor="newPassword">New Password</label>
+                        <div className="mb-4 w-80">
+                            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
                             <input
                                 id="newPassword"
                                 type="password"
                                 value={newPassword}
                                 onChange={(event) => setNewPassword(event.target.value)}
                                 placeholder="Enter new password"
-                                className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
-                        <div className="mb-6">
-                            <label className="sr-only" htmlFor="confirmPassword">Confirm Password</label>
+                        <div className="mb-6 w-80">
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
                             <input
                                 id="confirmPassword"
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(event) => setConfirmPassword(event.target.value)}
                                 placeholder="Confirm new password"
-                                className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
                         <button

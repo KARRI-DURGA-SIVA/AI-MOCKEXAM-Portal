@@ -20,6 +20,7 @@ function Signup() {
                 </p>
             </div>
             <div className="w-5/4 flex flex-col items-center justify-center p-8">
+                <img src="src/assets/3u.png" alt="Login" className="w-15 -translate-y-20" />
                 <h2 className="font-poppins text-4xl font-extrabold text-blue-600 text-center mb-8 -translate-y-10">
                     Sign Up
                 </h2>
