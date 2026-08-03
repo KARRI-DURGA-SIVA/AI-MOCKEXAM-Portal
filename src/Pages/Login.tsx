@@ -4,7 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 function Login() {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
-    const [password, setPassword] = useState('')
+    const [name, setName] = useState('admin')
+    const [password, setPassword] = useState('password')
     const [forgotMode, setForgotMode] = useState(false)
     const [resetEmail, setResetEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
@@ -27,60 +28,91 @@ function Login() {
 
                 {!forgotMode ? (
                     <>
-                        <div className="mb-4">
-                            <label className="sr-only" htmlFor="email"></label>
+                        <div className="relative w-80 mb-8">
+                            <label
+                                htmlFor="name"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Email
+                            </label>
+
                             <input
-                                id="email"
-                                type="email"
-                                placeholder="Enter your email"
-                                className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                id="name"
+                                type="text"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                                placeholder="Enter your Email"
+                                className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
-                        <div className="relative mb-6">
-                            <label className="sr-only" htmlFor="password">Password</label>
+
+                        <div className="relative w-80 mb-6">
+                            <label
+                                htmlFor="password"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Password
+                            </label>
+
                             <input
                                 id="password"
-                                type={showPassword ? 'text' : 'password'}
+                                type={showPassword ? "text" : "password"}
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                                 placeholder="Enter your password"
-                                className="w-80 max-w-full border border-black px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
+
                             {password.length > 0 && (
                                 <button
                                     type="button"
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
                                 >
-                                    <i className={showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i>
+                                    <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
                                 </button>
                             )}
                         </div>
+                   <div className="w-80 flex justify-end mb-4 -ml-62">
+    <label className="flex items-center cursor-pointer">
+        <input
+            type="checkbox"
+            className="w-3 h-3 accent-blue-600 focus:ring-blue-500"
+        />
+        <span className="ml-3 text-sm text-gray-700">
+            Remember me For 30 days
+        </span>
+    </label>
+</div>
+
                         <button
-                            className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700"
-                            onClick={() => navigate('/dashboard')}
+                            className="w-80 rounded-xl bg-blue-600 py-2.5 text-white hover:bg-blue-700 transition"
+                            onClick={() => navigate("/dashboard")}
                         >
                             Login
                         </button>
+
                         <button
-                            className="text-sm text-blue-600 hover:text-blue-800 transition mt-4"
+                            className="text-sm text-blue-600 hover:text-blue-800 mt-4"
                             onClick={() => setForgotMode(true)}
                         >
-                            Forgot password?
+                            Forgot Password?
                         </button>
+
                         <button
                             onClick={() => navigate("/")}
-                            className="mt-4 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 px-15 bg-white hover:bg-gray-100 transition"
+                            className="mt-4 w-80 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
                         >
                             <FcGoogle size={22} />
                             <span className="font-medium text-gray-700">
                                 Continue with Google
                             </span>
                         </button>
+
                         <button
-                            className="text-blue-600 hover:text-blue-800 transition justify-center items-center mt-4 flex gap-2 pl-2"
-                            onClick={() => navigate('/signup')}
+                            className="mt-4 text-blue-600 hover:text-blue-800"
+                            onClick={() => navigate("/signup")}
                         >
                             Don't have an account? Sign up
                         </button>
