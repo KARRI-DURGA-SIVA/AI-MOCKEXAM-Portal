@@ -7,6 +7,7 @@ function Signup() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
 
     return (
         <div className="min-h-screen bg-white flex">
@@ -23,39 +24,68 @@ function Signup() {
                     Sign Up
                 </h2>
 
-                <div className="mb-4">
-                    <label className="sr-only" htmlFor="name">Name</label>
-                    <input
-                        id="name"
-                        type="text"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        placeholder="Enter your name"
-                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="sr-only" htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        placeholder="Enter your email"
-                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="sr-only" htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                        placeholder="Enter your password"
-                        className="w-80 max-w-full border border-black px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-                </div>
+                  <div className="relative w-80 mb-8">
+                            <label
+                                htmlFor="name"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Name
+                            </label>
+
+                            <input
+                                id="name"
+                                type="text"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                                placeholder="Enter your Name"
+                                className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            />
+                        </div>
+                    <div className="relative w-80 mb-8">
+                            <label
+                                htmlFor="email"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Email
+                            </label>
+
+                            <input
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                                placeholder="Enter your Email"
+                                className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            />
+                        </div>
+                    <div className="relative w-80 mb-6">
+                            <label
+                                htmlFor="password"
+                                className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                            >
+                                Password
+                            </label>
+
+                            <input
+                                id="password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                                placeholder="Enter your password"
+                                className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                            />
+
+                            {password.length > 0 && (
+                                <button
+                                    type="button"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
+                                >
+                                    <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                                </button>
+                            )}
+                        </div>
                 <button
                     className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700"
                     onClick={() => navigate('/dashboard')}
