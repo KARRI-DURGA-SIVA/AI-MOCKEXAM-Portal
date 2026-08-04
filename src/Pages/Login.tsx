@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FcGoogle } from "react-icons/fc";
 function Login() {
     const navigate = useNavigate()
@@ -10,8 +10,23 @@ function Login() {
     const [resetEmail, setResetEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [showToast, setShowToast] = useState(false)
+
+    useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout>
+        if (showToast) {
+            timeout = setTimeout(() => setShowToast(false), 2200)
+        }
+        return () => clearTimeout(timeout)
+    }, [showToast])
+
+    const handleLogin = () => {
+        setShowToast(true)
+        setTimeout(() => navigate('/dashboard'), 1000)
+    }
+
     return (
-        <div className="min-h-screen bg-white flex">
+        <div className="min-h-screen bg-white flex relative">
             <div className="w-5/3 bg-blue-500 flex flex-col items-center justify-center p-8">
             <h1 className='text-5xl text-white font-extrabold'>
                 AI EXAM PORTAL
@@ -78,7 +93,7 @@ function Login() {
     <label className="flex items-center cursor-pointer">
         <input
             type="checkbox"
-            className="w-3 h-3 accent-blue-600 focus:ring-blue-500"
+            className="w-3 h-3   accent-blue-600 focus:ring-blue-500"
         />
         <span className="ml-3 text-sm text-gray-700">
             Remember me For 30 days
@@ -88,10 +103,42 @@ function Login() {
 
                         <button
                             className="w-80 rounded-xl bg-blue-600 py-2.5 text-white hover:bg-blue-700 transition"
-                            onClick={() => navigate("/dashboard")}
+                            onClick={handleLogin}
                         >
                             Login
                         </button>
+
+                        {showToast && (
+                            <div className="fixed left-1/2 top-6 z-50 -translate-x-1/2">
+    <div
+        className="overflow-hidden rounded-full bg-white shadow-[0_20px_60px_rgba(45,85,255,0.12)] ring-1 ring-slate-200"
+        style={{ minWidth: '320px', maxWidth: '320px' }}
+    >
+        <div className="h-1 bg-blue-500" />
+
+        <div className="flex items-center gap-2 px-6 py-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full text-green-700">
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <path d="M6 12.5l4 4 8-8" />
+                </svg>
+            </div>
+
+            <p className="ml-5 mt-2 text-base font-semibold text-slate-900 ">
+                Login Successfully
+            </p>
+        </div>
+    </div>
+</div>
+                        )}
 
                         <button
                             className="text-sm text-blue-600 hover:text-blue-800 mt-4"
