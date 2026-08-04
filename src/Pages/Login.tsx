@@ -117,11 +117,11 @@ function Login() {
         <div className="h-1 bg-blue-500" />
 
         <div className="flex items-center gap-2 px-6 py-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full text-green-700">
+            <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full text-green-700">
                 <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 20 20"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="3"
