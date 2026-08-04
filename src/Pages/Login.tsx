@@ -96,7 +96,7 @@ function Login() {
             className="w-3 h-3   accent-blue-600 focus:ring-blue-500"
         />
         <span className="ml-3 text-sm text-gray-700">
-            Remember me For 30 days
+            Remember me for 30 days
         </span>
     </label>
 </div>
