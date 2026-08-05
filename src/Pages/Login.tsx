@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { FcGoogle } from "react-icons/fc";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth, provider } from "../firebase";
 
@@ -39,14 +39,18 @@ function Login() {
 
     const handleGoogleLogin = async () => {
         try {
-            const result = await signInWithPopup(auth, provider);
+            await setPersistence(auth, browserLocalPersistence);
+            await signInWithPopup(auth, provider);
             loginSuccess();
-        } catch (error) {
-            if (error instanceof FirebaseError) {
-                alert(error.message);
-            } else {
-                alert('An unexpected error occurred.');
-            }
+        } catch (error: unknown) {
+            console.error('Google login error:', error);
+            const message =
+                error instanceof FirebaseError
+                    ? `${error.code}: ${error.message}`
+                    : error instanceof Error
+                    ? error.message
+                    : String(error);
+            alert(`Google sign-in failed: ${message}`);
         }
     };
 
@@ -173,6 +177,7 @@ function Login() {
                         </button>
 
                         <button
+                            type="button"
                             onClick={handleGoogleLogin}
                             className="mt-4 w-80 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
                         >

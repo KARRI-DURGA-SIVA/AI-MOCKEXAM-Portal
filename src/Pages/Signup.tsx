@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { useEffect } from "react"
-import { signInWithPopup } from "firebase/auth"
+import { signInWithPopup, setPersistence, browserLocalPersistence } from "firebase/auth"
 import { FirebaseError } from "firebase/app"
 import { auth, provider } from "../firebase"
 
@@ -35,18 +35,18 @@ function Signup() {
 
     const handleGoogleSignup = async () => {
         try {
-            const result = await signInWithPopup(auth, provider);
-
-            const user = result.user;
-
+            await setPersistence(auth, browserLocalPersistence);
+            await signInWithPopup(auth, provider);
             signupSuccess();
-
-        } catch (error) {
-            if (error instanceof FirebaseError) {
-                alert(error.message);
-            } else {
-                alert("Google Sign-Up failed");
-            }
+        } catch (error: unknown) {
+            console.error('Google signup error:', error);
+            const message =
+                error instanceof FirebaseError
+                    ? `${error.code}: ${error.message}`
+                    : error instanceof Error
+                    ? error.message
+                    : String(error);
+            alert(`Google sign-up failed: ${message}`);
         }
     };
 
@@ -168,6 +168,7 @@ function Signup() {
                 )}
 
                 <button
+                    type="button"
                     onClick={handleGoogleSignup}
                     className="w-80 max-w-full mt-4 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 bg-white hover:bg-gray-100 transition"
                 >
