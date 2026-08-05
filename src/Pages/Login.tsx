@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { FcGoogle } from "react-icons/fc";
+import { signInWithPopup } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import { auth, provider } from "../firebase";
+
+
 function Login() {
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
@@ -21,19 +26,39 @@ function Login() {
     }, [showToast])
 
     const handleLogin = () => {
-        setShowToast(true)
-        setTimeout(() => navigate('/dashboard'), 1000)
+        loginSuccess();
     }
+
+    const loginSuccess = () => {
+        setShowToast(true);
+
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 1000);
+    };
+
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            loginSuccess();
+        } catch (error) {
+            if (error instanceof FirebaseError) {
+                alert(error.message);
+            } else {
+                alert('An unexpected error occurred.');
+            }
+        }
+    };
 
     return (
         <div className="min-h-screen bg-white flex relative">
             <div className="w-5/3 bg-blue-500 flex flex-col items-center justify-center p-8">
-            <h1 className='text-5xl text-white font-extrabold'>
-                AI EXAM PORTAL
-            </h1>
-             <p className="mt-4 text-white text-xl">
-                Welcome Back
-            </p>
+                <h1 className='text-5xl text-white font-extrabold'>
+                    AI EXAM PORTAL
+                </h1>
+                <p className="mt-4 text-white text-xl">
+                    Welcome Back
+                </p>
             </div>
             <div className="w-5/4 flex flex-col items-center justify-center p-8">
                 <img src="src/assets/3u.png" alt="Login" className="w-15 -translate-y-20" />
@@ -90,16 +115,16 @@ function Login() {
                             )}
                         </div>
                         <div className="w-80 flex justify-end mb-4 -ml-61">
-    <label className="flex items-center cursor-pointer">
-        <input
-            type="checkbox"
-            className="w-3 h-3   accent-blue-600 focus:ring-blue-500"
-        />
-        <span className="ml-3 text-sm text-gray-700">
-            Remember me for 30 days
-        </span>
-    </label>
-</div>
+                            <label className="flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    className="w-3 h-3   accent-blue-600 focus:ring-blue-500"
+                                />
+                                <span className="ml-3 text-sm text-gray-700">
+                                    Remember me for 30 days
+                                </span>
+                            </label>
+                        </div>
 
                         <button
                             className="w-80 rounded-xl bg-blue-600 py-2.5 text-white hover:bg-blue-700 transition"
@@ -110,34 +135,34 @@ function Login() {
 
                         {showToast && (
                             <div className="fixed left-1/2 top-6 z-50 -translate-x-1/2">
-    <div
-        className="overflow-hidden rounded-full bg-white shadow-[0_20px_60px_rgba(45,85,255,0.12)] ring-1 ring-slate-200"
-        style={{ minWidth: '320px', maxWidth: '320px' }}
-    >
-        <div className="h-1 bg-blue-500" />
+                                <div
+                                    className="overflow-hidden rounded-full bg-white shadow-[0_20px_60px_rgba(45,85,255,0.12)] ring-1 ring-slate-200"
+                                    style={{ minWidth: '320px', maxWidth: '320px' }}
+                                >
+                                    <div className="h-1 bg-blue-500" />
 
-        <div className="flex items-center gap-2 px-6 py-2">
-            <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full text-green-700">
-                <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    <path d="M6 12.5l4 4 8-8" />
-                </svg>
-            </div>
+                                    <div className="flex items-center gap-2 px-6 py-2">
+                                        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full text-green-700">
+                                            <svg
+                                                width="22"
+                                                height="22"
+                                                viewBox="0 0 20 20"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="3"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            >
+                                                <path d="M6 12.5l4 4 8-8" />
+                                            </svg>
+                                        </div>
 
-            <p className="ml-5 mt-2 text-base font-semibold text-slate-900 ">
-                Login Successfully
-            </p>
-        </div>
-    </div>
-</div>
+                                        <p className="ml-5 mt-2 text-base font-semibold text-slate-900 ">
+                                            Login Successfully
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         )}
 
                         <button
@@ -148,7 +173,7 @@ function Login() {
                         </button>
 
                         <button
-                            onClick={() => navigate("/")}
+                            onClick={handleGoogleLogin}
                             className="mt-4 w-80 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
                         >
                             <FcGoogle size={22} />
@@ -156,19 +181,19 @@ function Login() {
                                 Continue with Google
                             </span>
                         </button>
-                                <div className="mt-4 flex items-center justify-center text-sm">
-    <span className="text-gray-700">
-        Don't have an account?
-    </span>
+                        <div className="mt-4 flex items-center justify-center text-sm">
+                            <span className="text-gray-700">
+                                Don't have an account?
+                            </span>
 
-    <button
-        onClick={() => navigate("/signup")}
-        className="ml-2 text-blue-600 font-medium hover:text-blue-800 hover:underline"
-    >
-        Sign Up
-    </button>
-</div>
-                        
+                            <button
+                                onClick={() => navigate("/signup")}
+                                className="ml-2 text-blue-600 font-medium hover:text-blue-800 hover:underline"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+
                     </>
                 ) : (
                     <>
@@ -258,9 +283,9 @@ function Login() {
                         </button>
                     </>
                 )}
-                </div>
             </div>
-        
+        </div>
+
     )
 }
 export default Login
