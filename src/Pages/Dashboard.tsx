@@ -1,6 +1,10 @@
 import { FaHome, FaPen, FaUser, } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate =useNavigate();
+  const handleLogin=()=>{navigate("/home")
+  };
   return (
     <div className="flex h-screen">
       {/* Left Sidebar */}
@@ -13,13 +17,14 @@ function Dashboard() {
             Home</li>
           <li className="w-full px-2 py-2 hover:text-blue-100 cursor-pointer flex items-center gap-3">
             < FaPen />
-            Exam</li>
+            Exams</li>
           <li className="w-full px-2 py-2 hover:text-blue-100 cursor-pointer flex items-center gap-3">
             < FaUser/>
             Profile</li>
         </ul>
         <div className="absolute bottom-0 left-0 p-6">
-          <button className="bg-white hover:bg-red-700 text-black font-bold py-3 px-20 rounded ">
+          <button onClick={handleLogin} className="bg-white hover:bg-red-700 text-black font-bold py-3 px-20 rounded"
+            >
             Logout
           </button>
         </div>
