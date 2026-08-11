@@ -240,15 +240,15 @@ function Login() {
                             </label>
 
                             <input
-                                id="password"
+                                id="newPassword"
                                 type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                value={newPassword}
+                                onChange={(event) => setNewPassword(event.target.value)}
                                 placeholder="Enter New password"
                                 className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
 
-                            {password.length > 0 && (
+                            {newPassword.length > 0 && (
                                 <button
                                     type="button"
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
@@ -261,22 +261,22 @@ function Login() {
                         </div><br></br>
                         <div className="relative w-80 mb-6">
                             <label
-                                htmlFor="password"
+                                htmlFor="confirmPassword"
                                 className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
                             >
                                 Confirm Password
                             </label>
 
                             <input
-                                id="password"
+                                id="confirmPassword"
                                 type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                value={confirmPassword}
+                                onChange={(event) => setConfirmPassword(event.target.value)}
                                 placeholder="Confirm new password"
                                 className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                             />
 
-                            {password.length > 0 && (
+                            {confirmPassword.length > 0 && (
                                 <button
                                     type="button"
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"

@@ -109,7 +109,6 @@ function Profile() {
     const [loadingCountries, setLoadingCountries] = useState(false);
     const [loadingUniversities, setLoadingUniversities] = useState(false);
 
-    const [showManualCollege, setShowManualCollege] = useState(false);
     const [editShowManualCollege, setEditShowManualCollege] =
         useState(false);
 
@@ -286,11 +285,6 @@ function Profile() {
                 setPortfolio(
                     data.portfolio ??
                     ""
-                );
-
-                setShowManualCollege(
-                    data.showManualCollege ??
-                    false
                 );
 
             } catch (error) {
@@ -558,11 +552,6 @@ function Profile() {
             setPortfolio(
                 editPortfolio.trim()
             );
-
-            setShowManualCollege(
-                editShowManualCollege
-            );
-
 
             setIsEditing(false);
 

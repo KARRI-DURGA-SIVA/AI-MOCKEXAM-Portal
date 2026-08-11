@@ -18,11 +18,11 @@ function DashboardLayout() {
                     Dashboard
                 </h1>
 
-                <ul className="space-y-8 text-lg mt-24">
+                <ul className="space-y-8 text-lg p-18 mt-24">
 
                     <li
-                        onClick={() => navigate("/home")}
-                        className="px-2 py-2 hover:text-blue-100 cursor-pointer flex items-center gap-3"
+                        onClick={() => navigate("/dashboard")}
+                        className="px-2 py-3 hover:text-blue-100 cursor-pointer flex items-center gap-3"
                     >
                         <FaHome />
                         Home
@@ -30,7 +30,7 @@ function DashboardLayout() {
 
                     <li
                         onClick={() => navigate("/exams")}
-                        className="px-2 py-2 hover:text-blue-100 cursor-pointer flex items-center gap-3"
+                        className="px-2 py-3 hover:text-blue-100 cursor-pointer flex items-center gap-3"
                     >
                         <FaPen />
                         Exams
