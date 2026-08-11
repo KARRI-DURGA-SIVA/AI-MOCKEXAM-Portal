@@ -699,7 +699,7 @@ function Profile() {
                     PROFILE CARD
                 ================================================= */}
 
-                <div className="bg-white rounded-xl shadow-sm p-8 flex flex-col items-center">
+                <div className="bg-white rounded shadow-sm p-8 flex flex-col items-center">
 
                     <div className="w-28 h-28 rounded-full bg-blue-100 flex items-center justify-center">
 
@@ -732,7 +732,7 @@ function Profile() {
                                 : handleEditProfile
                         }
                         disabled={saving}
-                        className="mt-6 px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-60"
+                        className="mt-6 px-6 py-2 rounded-sm bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-60"
                     >
 
                         {isEditing
@@ -750,7 +750,7 @@ function Profile() {
                     PERSONAL INFORMATION
                 ================================================= */}
 
-                <div className="lg:col-span-2 bg-white rounded-xl shadow-sm p-8">
+                <div className="lg:col-span-2 bg-white rounded-sm shadow-sm p-8">
 
                     <h2 className="text-xl font-semibold text-gray-800 mb-6">
                         Personal Information
@@ -770,7 +770,7 @@ function Profile() {
 
                             <div className="flex items-center gap-3 mt-3">
 
-                                <FaUser className="text-blue-600 shrink-0" />
+                                <FaUser className="text-blue-600 shrink-0 -mt-4" />
 
                                 <p className="text-gray-800">
                                     {fullName || "Not provided"}
@@ -791,7 +791,7 @@ function Profile() {
 
                             <div className="flex items-center gap-3 mt-3">
 
-                                <FaEnvelope className="text-blue-600 shrink-0" />
+                                <FaEnvelope className="text-blue-600 shrink-0 -mt-4" />
 
                                 <p className="text-gray-800 break-all">
                                     {email || "No email available"}
@@ -812,7 +812,7 @@ function Profile() {
 
                             <div className="flex items-center gap-3 mt-3">
 
-                                <FaUser className="text-blue-600 shrink-0" />
+                                <FaUser className="text-blue-600 shrink-0 -mt-4" />
 
                                 <p className="text-gray-800 break-all">
                                     {userId}
@@ -833,7 +833,7 @@ function Profile() {
 
                             <div className="flex items-center gap-3 mt-3">
 
-                                <FaUniversity className="text-blue-600 shrink-0" />
+                                <FaUniversity className="text-blue-600 shrink-0 -mt-4" />
 
                                 <p className="text-gray-800">
                                     {currentCollege}
@@ -854,7 +854,7 @@ function Profile() {
                 ADDITIONAL INFORMATION
             ================================================= */}
 
-            <div className="mt-6 bg-white rounded-xl shadow-sm p-8">
+            <div className="mt-6 bg-white rounded shadow-sm p-8">
 
                 <h2 className="text-xl font-semibold text-gray-800 mb-6">
                     Additional Information
@@ -1688,8 +1688,8 @@ function Profile() {
                                             </span>
 
                                             <FaExternalLinkAlt
-                                                size={12}
-                                                className="shrink-0"
+                                                size={13}
+                                                className="shrink-0 mb-4"
                                             />
 
                                         </a>
@@ -1707,7 +1707,7 @@ function Profile() {
 
                                 <div>
 
-                                    <p className="text-xs text-gray-500 mb-2">
+                                    <p className="text-xs text-gray-500 mb-2 ml-6">
                                         LeetCode
                                     </p>
 
@@ -1717,7 +1717,7 @@ function Profile() {
                                             href={leetcode}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 break-all"
+                                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 break-all ml-6"
                                         >
 
                                             <span>
@@ -1787,13 +1787,13 @@ function Profile() {
 
                         <div>
 
-                            <label className="block text-sm text-gray-500 mb-2">
+                            <label className="block text-sm text-gray-500 mb-3">
                                 College / University
                             </label>
 
                             <div className="flex items-center gap-3">
 
-                                <FaUniversity className="text-blue-600 shrink-0" />
+                                <FaUniversity className="text-blue-600 shrink-0 mb-3" />
 
                                 <p className="text-gray-800">
                                     {currentCollege}
