@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ChartNoAxesColumnIncreasing, Trophy, FileCheck2 } from "lucide-react";
 
 function Home() {
     const navigate = useNavigate();
@@ -16,8 +17,6 @@ function Home() {
                             alt="AI Exam Portal"
                             className="w-14 h-14"
                         />
-
-                       
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -39,12 +38,12 @@ function Home() {
                 </div>
             </header>
 
+
             {/* Hero Section */}
             <section className="max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
 
                 {/* Left Side */}
                 <div>
-                    
 
                     <h2 className="text-5xl font-extrabold text-gray-800 mt-6 leading-tight">
                         Smart &
@@ -73,7 +72,9 @@ function Home() {
                             Create Account
                         </button>
                     </div>
+
                 </div>
+
 
                 {/* Right Side */}
                 <div className="flex justify-center">
@@ -82,6 +83,115 @@ function Home() {
                         alt="AI Exam Portal"
                         className="w-80 md:w-96 drop-shadow-2xl"
                     />
+                </div>
+
+            </section>
+
+
+            {/* Exam Statistics */}
+            <section className="max-w-7xl mx-auto px-8 pb-16">
+
+                {/* Section Header */}
+                <div className="mb-8">
+                    <h2 className="text-3xl font-bold text-gray-800">
+                        Your Exam Performance
+                    </h2>
+
+                    <p className="mt-2 text-gray-500">
+                        Track your progress and performance at a glance
+                    </p>
+                </div>
+
+
+                {/* Statistics Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    {/* Exams Taken */}
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-7 hover:shadow-md transition">
+
+                        <div className="flex items-center justify-between">
+
+                            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                                <FileCheck2
+                                    className="text-blue-600"
+                                    size={25}
+                                />
+                            </div>
+
+                        </div>
+
+                        <p className="mt-6 text-gray-500 text-sm">
+                            Exams Taken
+                        </p>
+
+                        <p className="mt-2 text-4xl font-bold text-gray-800">
+                            12
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-500">
+                            Total examinations completed
+                        </p>
+
+                    </div>
+
+
+                    {/* Average Score */}
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-7 hover:shadow-md transition">
+
+                        <div className="flex items-center justify-between">
+
+                            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                                <ChartNoAxesColumnIncreasing
+                                    className="text-blue-600"
+                                    size={25}
+                                />
+                            </div>
+
+                        </div>
+
+                        <p className="mt-6 text-gray-500 text-sm">
+                            Average Score
+                        </p>
+
+                        <p className="mt-2 text-4xl font-bold text-gray-800">
+                            78%
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-500">
+                            Average performance across exams
+                        </p>
+
+                    </div>
+
+
+                    {/* Best Score */}
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-7 hover:shadow-md transition">
+
+                        <div className="flex items-center justify-between">
+
+                            <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                                <Trophy
+                                    className="text-blue-600"
+                                    size={25}
+                                />
+                            </div>
+
+                        </div>
+
+                        <p className="mt-6 text-gray-500 text-sm">
+                            Best Score
+                        </p>
+
+                        <p className="mt-2 text-4xl font-bold text-gray-800">
+                            94%
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-500">
+                            Your highest exam score
+                        </p>
+
+                    </div>
+
                 </div>
 
             </section>

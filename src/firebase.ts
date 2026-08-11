@@ -1,5 +1,12 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "firebase/auth";
+import {
+    initializeApp
+} from "firebase/app";
+
+import {
+    getAuth,
+    GoogleAuthProvider
+} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDsV-TCJVkWJ1lSfYW0BnUwNY3rx76BCWE",
@@ -13,9 +20,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
 
-setPersistence(auth, browserLocalPersistence).catch((error) => {
-  console.warn('Unable to set Firebase auth persistence:', error);
+export const provider = new GoogleAuthProvider();
+
+provider.setCustomParameters({
+  prompt: "select_account"
 });
+
+
+
+export const db = getFirestore(app);
