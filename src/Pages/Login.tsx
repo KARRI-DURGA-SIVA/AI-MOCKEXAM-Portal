@@ -74,7 +74,7 @@ function Login() {
 
     return (
         <div className="min-h-screen bg-white flex relative">
-            <div className="w-5/3 bg-blue-500 flex flex-col items-center justify-center p-8">
+            <div className="w-5/3 bg-blue-600 flex flex-col items-center justify-center p-8">
                 <h1 className='text-5xl text-white font-extrabold'>
                     AI EXAM PORTAL
                 </h1>
