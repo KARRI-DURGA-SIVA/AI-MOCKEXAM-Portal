@@ -1,5 +1,4 @@
-import { FaChartBar, FaCheckCircle, FaHome, FaPen, FaSignal, FaUser } from "react-icons/fa";
-import { FaChartLine } from "react-icons/fa6";
+import { FaHome, FaPen, FaUser } from "react-icons/fa";
 import { Outlet, useNavigate } from "react-router-dom";
 
 function DashboardLayout() {
@@ -22,11 +21,11 @@ function DashboardLayout() {
                 <ul className="space-y-8 text-lg p-18 mt-24">
 
                     <li
-                        onClick={() => navigate("/status")}
+                        onClick={() => navigate("/dashboard")}
                         className="px-2 py-3 hover:text-blue-100 cursor-pointer flex items-center gap-3"
                     >
-                        <FaChartBar/>
-                        Status
+                        <FaHome />
+                        Home
                     </li>
 
                     <li
