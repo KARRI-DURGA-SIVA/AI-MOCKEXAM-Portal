@@ -6,19 +6,21 @@ import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
 import Exam from "./Pages/Exam";
 import Profile from "./Pages/Profile";
+import Status from "./Pages/Status";
 
 import DashboardLayout from "./components/DashboardLayout";
 
 function App() {
     return (
         <Routes>
-           
+            
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route element={<DashboardLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/status" element={<Status/>}/>
                 <Route path="/exams" element={<Exam />} />
                 <Route path="/profile" element={<Profile />} />
             </Route>
