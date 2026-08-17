@@ -135,32 +135,7 @@ function Instruction() {
 
         {/* ================= EXAM TYPE ================= */}
 
-        <div className="mt-5 flex flex-wrap gap-2">
-
-          {(["NPTEL", "ServiceNow", "Government"] as ExamType[]).map(
-            (type) => (
-
-              <button
-                key={type}
-                onClick={() => {
-                  setExamType(type);
-                  setAccepted(false);
-                }}
-                className={`rounded-full px-5 py-2.5 text-xs font-bold transition ${
-                  examType === type
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "bg-white text-gray-600 shadow-sm hover:bg-gray-100"
-                }`}
-              >
-                {type === "Government"
-                  ? "Government Exams"
-                  : type}
-              </button>
-
-            )
-          )}
-
-        </div>
+      
 
         {/* ================= EXAM INFORMATION ================= */}
 
