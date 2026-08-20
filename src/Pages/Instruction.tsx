@@ -54,31 +54,31 @@ function Instruction() {
   const steps = [
     {
       number: 1,
-      title: "Camera & Audio Check",
+      title: "Camera & Audio",
       description:
-        "Take your photo and verify your camera, microphone, and speaker are working properly before continuing.",
-      button: "Check Camera & Audio",
+        "",
+      button: "Check",
     },
     {
       number: 2,
       title: "System Diagnosis & Student ID",
       description:
-        "Check your system configuration and upload a valid student ID card for verification.",
-      button: "Check System & ID",
+        "",
+      button: "Check",
     },
     {
       number: 3,
-      title: "Environment & Browser Check",
+      title: "Environment & Browser",
       description:
-        "Make sure your internet connection, browser, keyboard, mouse, and examination environment are ready.",
-      button: "Check Environment",
+        "",
+      button: "Check",
     },
     {
       number: 4,
       title: "Final Verification",
       description:
-        "Complete all required checks before proceeding to the examination.",
-      button: "Final Verification",
+        "",
+      button: "Check",
     },
   ];
 
@@ -143,7 +143,7 @@ function Instruction() {
 
           {/* Duration */}
 
-          <div className="rounded-[20px] bg-blue-600 p-5 text-white shadow-sm">
+          <div className="rounded-[12px] bg-blue-600 p-5 text-white shadow-sm">
 
             <Clock3 size={20} />
 
@@ -159,7 +159,7 @@ function Instruction() {
 
           {/* Question Type */}
 
-          <div className="rounded-[20px] bg-blue-600 p-5 text-white shadow-sm">
+          <div className="rounded-[12px] bg-blue-600 p-5 text-white shadow-sm">
 
             <FileText size={20} />
 
@@ -175,7 +175,7 @@ function Instruction() {
 
           {/* Mode */}
 
-          <div className="rounded-[20px] bg-blue-600 p-5 text-white shadow-sm">
+          <div className="rounded-[12px] bg-blue-600 p-5 text-white shadow-sm">
 
             <Monitor size={20} />
 
@@ -193,14 +193,14 @@ function Instruction() {
 
         {/* ================= STEP BY STEP ================= */}
 
-        <div className="mt-6 rounded-[28px] bg-white p-6 shadow-sm sm:mt-8 sm:p-8 md:p-9">
+        <div className="mt-6 rounded-[8px] bg-white p-6 shadow-sm sm:mt-8 sm:p-8 md:p-9">
 
           {/* Heading */}
 
           <div className="flex items-start gap-3">
 
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-              <CheckCircle2 size={23} />
+            <div className="flex -ml-2 h-11 w-11 shrink-0 items-center justify-center rounded-full text-blue-600">
+              <CheckCircle2 size={35} />
             </div>
 
             <div>
@@ -220,7 +220,7 @@ function Instruction() {
 
           {/* Steps */}
 
-          <div className="mt-8 space-y-7">
+          <div className="mt-9 space-y-10">
 
             {steps.map((step) => (
 
@@ -231,7 +231,7 @@ function Instruction() {
 
                 {/* Number */}
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                <div className="flex h-7 w-7 mt-1 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
                   {step.number}
                 </div>
 
@@ -255,18 +255,17 @@ function Instruction() {
 
                     {/* Action Button */}
 
-                    <button
-                      type="button"
-                      className="flex h-9 shrink-0 items-center justify-center rounded-full bg-blue-600 px-5 text-xs font-bold text-white transition hover:bg-blue-700"
-                    >
-                      {step.button}
-                    </button>
-
+       <button
+  type="button"
+  className="flex h-10 w-42 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white transition-all duration-200 hover:bg-blue-700 active:scale-95"
+>
+  {step.button}
+</button>
                   </div>
 
                   {/* Status */}
 
-                  <div className="mt-3 flex items-center gap-2">
+                  <div className="mt-1 flex items-center gap-2">
 
                     <span className="h-2 w-2 rounded-full bg-gray-400" />
 
@@ -292,11 +291,11 @@ function Instruction() {
 
           {/* IMPORTANT RULES */}
 
-          <div className="rounded-[28px] bg-white p-6 shadow-sm sm:p-7">
+          <div className="rounded-[8px] bg-white p-6 shadow-sm sm:p-7">
 
             <div className="flex items-center gap-3">
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+              <div className="flex -ml-2 h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600">
                 <AlertTriangle size={22} />
               </div>
 
@@ -334,11 +333,11 @@ function Instruction() {
 
           {/* BEFORE STARTING */}
 
-          <div className="rounded-[28px] bg-white p-6 shadow-sm sm:p-7">
+          <div className="rounded-[8px] bg-white p-6 shadow-sm sm:p-7">
 
             <div className="flex items-center gap-3">
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+              <div className="flex h-11 w-11 -ml-2 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
                 <ShieldCheck size={22} />
               </div>
 
@@ -376,69 +375,68 @@ function Instruction() {
 
         </div>
 
-        {/* ================= CONFIRMATION ================= */}
+    {/* ================= CONFIRMATION ================= */}
 
-        <div className="mt-6 rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm sm:mt-8 sm:p-7">
+{/* ================= CONFIRMATION ================= */}
 
-          <label className="flex cursor-pointer items-start gap-4">
+<div className="mt-6 rounded-[8px] border border-gray-200 bg-white p-6 shadow-sm sm:mt-8 sm:p-7">
 
-            <input
-              type="checkbox"
-              checked={accepted}
-              onChange={(e) =>
-                setAccepted(e.target.checked)
-              }
-              className="mt-1 h-5 w-5 shrink-0 accent-blue-600"
-            />
+  <label className="relative block cursor-pointer">
 
-            <div>
+    {/* Checkbox - LEFT */}
+    <input
+      type="checkbox"
+      checked={accepted}
+      onChange={(e) => setAccepted(e.target.checked)}
+      className="absolute left-0 top-1 h-5 w-5 cursor-pointer accent-blue-600"
+    />
 
-              <p className="font-bold text-[#1f2937]">
-                I have read and understood the instructions
-              </p>
+    {/* Content - RIGHT */}
+    <div className="pl-9">
+      <p className="font-bold leading-6 text-[#1f2937]">
+        I have read and understood the instructions
+      </p>
 
-              <p className="mt-1 text-sm leading-6 text-gray-500">
-                I agree to follow the examination rules and
-                understand that the examination may begin once I
-                click Start Exam.
-              </p>
+      <p className="mt-1 text-sm leading-6 text-gray-500">
+        I agree to follow the examination rules and understand that
+        the examination may begin once I click Start Exam.
+      </p>
+    </div>
 
-            </div>
+  </label>
 
-          </label>
+  {/* ================= BUTTONS ================= */}
 
-          {/* ================= BUTTONS ================= */}
+  <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
 
-          <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+    {/* Go Back */}
+    <button
+      type="button"
+      onClick={() => navigate(-1)}
+      className="flex h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-7 text-sm font-bold text-gray-700 transition-all duration-200 hover:bg-gray-100"
+    >
+      <ArrowLeft size={16} />
+      Go Back
+    </button>
 
-            {/* Go Back */}
+    {/* Start Exam */}
+    <button
+      type="button"
+      disabled={!accepted}
+      onClick={() => navigate("/Status")}
+      className={`flex h-12 items-center justify-center gap-3 rounded-full px-7 text-sm font-bold transition-all duration-200 ${
+        accepted
+          ? "bg-blue-600 text-white shadow-md hover:bg-blue-700"
+          : "cursor-not-allowed bg-gray-200 text-gray-400"
+      }`}
+    >
+      Start Exam
+      <ArrowRight size={17} />
+    </button>
 
-            <button
-              onClick={() => navigate(-1)}
-              className="flex h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-7 text-sm font-bold text-gray-700 transition hover:bg-gray-100"
-            >
-              <ArrowLeft size={16} />
-              Go Back
-            </button>
+  </div>
 
-            {/* Start Exam */}
-
-            <button
-              disabled={!accepted}
-              onClick={() => navigate("/Status")}
-              className={`flex h-12 items-center justify-center gap-3 rounded-full px-7 text-sm font-bold transition ${
-                accepted
-                  ? "bg-blue-600 text-white shadow-md hover:bg-blue-700"
-                  : "cursor-not-allowed bg-gray-200 text-gray-400"
-              }`}
-            >
-              Start Exam
-              <ArrowRight size={17} />
-            </button>
-
-          </div>
-
-        </div>
+</div>
 
         {/* ================= FOOTER ================= */}
 
