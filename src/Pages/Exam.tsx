@@ -1,6 +1,12 @@
 import { ArrowRight, Info, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+ 
 
 function Exam() {
+
+  const navigate=useNavigate();
+  
   return (
     <div className="h-full bg-[#f3f4f6] p-8 md:p-12">
       <div className="flex items-start justify-between gap-4">
@@ -53,7 +59,7 @@ function Exam() {
             
    
  
-<button
+<button onClick={() => navigate("/Instruction")}
   style={{ borderRadius: '99999px', fontSize: '14px' }}
   className="flex items-center justify-between gap-3 h-10 w-29 px-4 py-2 rounded-full bg-white text-[#202020] shadow-sm font-bold"
 >

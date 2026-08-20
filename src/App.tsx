@@ -7,13 +7,14 @@ import Dashboard from "./Pages/Dashboard";
 import Exam from "./Pages/Exam";
 import Profile from "./Pages/Profile";
 import Status from "./Pages/Status";
+import Instruction from "./Pages/Instruction";
 
 import DashboardLayout from "./components/DashboardLayout";
 
 function App() {
     return (
         <Routes>
-            
+            <Route path="/instruction" element={<Instruction />}/>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
