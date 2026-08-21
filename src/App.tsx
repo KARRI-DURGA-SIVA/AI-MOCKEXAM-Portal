@@ -10,11 +10,13 @@ import Status from "./Pages/Status";
 import Instruction from "./Pages/Instruction";
 
 import DashboardLayout from "./components/DashboardLayout";
+import CameraAudioCheck from "./Pages/CameraAudioCheck";
 
 function App() {
     return (
         <Routes>
             <Route path="/instruction" element={<Instruction />}/>
+            <Route path="/camera-audio-check"element={<CameraAudioCheck />}/>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />

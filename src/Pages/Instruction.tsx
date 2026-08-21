@@ -255,8 +255,13 @@ function Instruction() {
 
                     {/* Action Button */}
 
-       <button
+      <button
   type="button"
+  onClick={() => {
+    if (step.number === 1) {
+      navigate("/camera-audio-check");
+    }
+  }}
   className="flex h-10 w-42 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white transition-all duration-200 hover:bg-blue-700 active:scale-95"
 >
   {step.button}
