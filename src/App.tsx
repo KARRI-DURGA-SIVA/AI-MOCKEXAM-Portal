@@ -11,10 +11,12 @@ import Instruction from "./Pages/Instruction";
 
 import DashboardLayout from "./components/DashboardLayout";
 import CameraAudioCheck from "./Pages/CameraAudioCheck";
+import SystemCheck from "./Pages/SystemCheck";
 
 function App() {
     return (
         <Routes>
+            <Route path="/systemcheck" element={<SystemCheck/>}/>
             <Route path="/instruction" element={<Instruction />}/>
             <Route path="/camera-audio-check"element={<CameraAudioCheck />}/>
             <Route path="/" element={<Home />} />
