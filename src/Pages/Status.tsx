@@ -116,17 +116,7 @@ const questions: Question[] = [
       "SMTP",
     ],
   },
-  {
-    id: 10,
-    question:
-      "Which language is primarily used for styling web pages?",
-    options: [
-      "HTML",
-      "CSS",
-      "Java",
-      "Python",
-    ],
-  },
+ 
 ];
 
 function Status() {
