@@ -1,5 +1,4 @@
-import { FaChartBar, FaCheckCircle, FaHome, FaPen, FaSignal, FaUser } from "react-icons/fa";
-import { FaChartLine } from "react-icons/fa6";
+import { FaChartBar, FaPen, FaUser } from "react-icons/fa";
 import { Outlet, useNavigate } from "react-router-dom";
 
 function DashboardLayout() {

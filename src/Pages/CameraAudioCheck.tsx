@@ -133,9 +133,12 @@ function CameraAudioCheck() {
   };
 
   useEffect(() => {
-    startCheck();
+    const checkTimer = window.setTimeout(() => {
+      void startCheck();
+    }, 0);
 
     return () => {
+      window.clearTimeout(checkTimer);
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((track) => track.stop());
       }
@@ -148,6 +151,8 @@ function CameraAudioCheck() {
         cancelAnimationFrame(animationRef.current);
       }
     };
+  // Run the initial device check once when the page opens.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const bothPassed =

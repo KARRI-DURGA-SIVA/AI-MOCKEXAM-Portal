@@ -24,7 +24,7 @@ function Instruction() {
   const navigate = useNavigate();
 
   const [accepted, setAccepted] = useState(false);
-  const [examType, setExamType] = useState<ExamType>("NPTEL");
+  const [examType] = useState<ExamType>("NPTEL");
 
   const examData: Record<ExamType, ExamInfo> = {
     NPTEL: {

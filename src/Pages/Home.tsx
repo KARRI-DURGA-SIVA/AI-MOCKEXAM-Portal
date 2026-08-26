@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { ChartNoAxesColumnIncreasing, Trophy, FileCheck2 } from "lucide-react";
 
 function Home() {
     const navigate = useNavigate();

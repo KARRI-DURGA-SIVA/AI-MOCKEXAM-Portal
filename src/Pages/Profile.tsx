@@ -310,8 +310,6 @@ function Profile() {
 
         if (!isEditing || !editCountry) {
 
-            setUniversities([]);
-
             return;
 
         }
