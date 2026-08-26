@@ -38,12 +38,6 @@ type CheckState = {
   message: string;
 };
 
-type CheckItem = {
-  title: string;
-  description: string;
-  icon: ElementType;
-};
-
 type DetectedItem = {
   name: string;
   type: "tab" | "application";
@@ -129,9 +123,6 @@ function EnvironmentCheck() {
 
   const [violationCount, setViolationCount] =
     useState(0);
-
-  const [pageFocused, setPageFocused] =
-    useState(true);
 
   const [monitoringEnabled, setMonitoringEnabled] =
     useState(false);
@@ -478,14 +469,6 @@ function EnvironmentCheck() {
    * =========================================================
    */
 
-  const runAllChecks = async () => {
-    checkBrowser();
-
-    await checkInternet();
-
-    checkApplications();
-  };
-
   /*
    * =========================================================
    * ENABLE MONITORING
@@ -512,8 +495,6 @@ function EnvironmentCheck() {
       environmentPassed
     ) {
       setMonitoringEnabled(true);
-
-      setPageFocused(true);
 
       updateCheck(
         "applications",
@@ -552,21 +533,15 @@ function EnvironmentCheck() {
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        setPageFocused(false);
-
         showSecurityPopup(
           "Tab Switch Detected",
           "You left the AI Mock Exam page. Please return to the examination immediately.",
           "tab-switch"
         );
-      } else {
-        setPageFocused(true);
       }
     };
 
     const handleWindowBlur = () => {
-      setPageFocused(false);
-
       showSecurityPopup(
         "Exam Window Inactive",
         "The examination window is no longer active. Please return to the exam window.",
@@ -575,7 +550,6 @@ function EnvironmentCheck() {
     };
 
     const handleWindowFocus = () => {
-      setPageFocused(true);
     };
 
     const handleFullscreenChange = () => {

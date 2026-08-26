@@ -139,10 +139,7 @@ function Status() {
   /* ================= TIMER ================= */
 
   useEffect(() => {
-    if (timeLeft <= 0) {
-      setShowSubmit(true);
-      return;
-    }
+    if (timeLeft <= 0) return;
 
     const timer = setInterval(() => {
       setTimeLeft((time) => time - 1);
@@ -150,6 +147,8 @@ function Status() {
 
     return () => clearInterval(timer);
   }, [timeLeft]);
+
+  const submitModalVisible = showSubmit || timeLeft <= 0;
 
   /* ================= FORMAT TIME ================= */
 
@@ -646,7 +645,7 @@ function Status() {
       {/* SUBMIT MODAL */}
       {/* ================================================= */}
 
-      {showSubmit && (
+      {submitModalVisible && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4">
 
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl sm:p-7">

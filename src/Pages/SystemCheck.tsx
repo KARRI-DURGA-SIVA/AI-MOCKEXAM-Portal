@@ -8,6 +8,14 @@ import {
   Monitor,
 } from "lucide-react";
 
+function StatusIcon({ active }: { active: boolean }) {
+  return active ? (
+    <CheckCircle className="text-green-500" size={22} />
+  ) : (
+    <XCircle className="text-red-500" size={22} />
+  );
+}
+
 function SystemCheck() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -46,24 +54,16 @@ function SystemCheck() {
 
     checkDevices();
 
+    const video = videoRef.current;
+
     return () => {
-      if (videoRef.current?.srcObject) {
-        const tracks = (
-          videoRef.current.srcObject as MediaStream
-        ).getTracks();
+      if (video?.srcObject) {
+        const tracks = (video.srcObject as MediaStream).getTracks();
 
         tracks.forEach((track) => track.stop());
       }
     };
   }, []);
-
-  const Status = ({ active }: { active: boolean }) => {
-    return active ? (
-      <CheckCircle className="text-green-500" size={22} />
-    ) : (
-      <XCircle className="text-red-500" size={22} />
-    );
-  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-6">
@@ -116,7 +116,7 @@ function SystemCheck() {
                 </div>
               </div>
 
-              <Status active={camera} />
+              <StatusIcon active={camera} />
             </div>
           </div>
 
@@ -138,7 +138,7 @@ function SystemCheck() {
                 </div>
               </div>
 
-              <Status active={microphone} />
+              <StatusIcon active={microphone} />
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
@@ -157,7 +157,7 @@ function SystemCheck() {
                 </div>
               </div>
 
-              <Status active={audio} />
+              <StatusIcon active={audio} />
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
