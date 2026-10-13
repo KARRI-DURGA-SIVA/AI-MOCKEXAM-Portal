@@ -1,18 +1,23 @@
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { FcGoogle } from 'react-icons/fc'
-import { useEffect } from "react"
-import { signInWithPopup } from "firebase/auth"
-import { FirebaseError } from "firebase/app"
-import { auth, provider } from "../firebase"
+
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import type { FormEvent } from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { signInWithPopup } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
+import { auth, provider } from '../firebase';
+import { signupUser } from '../services/auth';
 
 function Signup() {
-    const navigate = useNavigate()
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [showToast, setShowToast] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout>;
@@ -28,8 +33,9 @@ function Signup() {
 
     const signupSuccess = () => {
         setShowToast(true);
+
         setTimeout(() => {
-            navigate("/dashboard");
+            navigate('/dashboard');
         }, 1000);
     };
 
@@ -37,13 +43,11 @@ function Signup() {
         try {
             const result = await signInWithPopup(auth, provider);
 
-            console.log("Google signup successful:", result.user);
+            console.log('Google signup successful:', result.user);
 
             signupSuccess();
-
         } catch (error: unknown) {
-
-            console.error("Google signup error:", error);
+            console.error('Google signup error:', error);
 
             const message =
                 error instanceof FirebaseError
@@ -56,90 +60,145 @@ function Signup() {
         }
     };
 
+    const handleSignup = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        setLoading(true);
+        setErrorMessage('');
+
+        try {
+            await signupUser({
+                name: name.trim(),
+                email: email.trim(),
+                password,
+            });
+
+            setShowToast(true);
+
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } catch (error: unknown) {
+            setErrorMessage(
+                error instanceof Error
+                    ? error.message
+                    : 'Signup failed. Please try again.'
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-white flex">
             <div className="w-5/3 bg-blue-500 flex flex-col items-center justify-center p-8">
                 <h1 className="text-5xl text-white font-extrabold">
                     AI EXAM PORTAL
                 </h1>
+
                 <p className="mt-4 text-white text-xl">
                     Welcome Back
                 </p>
             </div>
+
             <div className="w-5/4 flex flex-col items-center justify-center p-8">
-                <img src="src/assets/3u.png" alt="Login" className="w-15 -translate-y-20" />
+                <img
+                    src="src/assets/3u.png"
+                    alt="Login"
+                    className="w-15 -translate-y-20"
+                />
+
                 <h2 className="font-poppins text-4xl font-extrabold text-blue-600 text-center mb-8 -translate-y-10">
                     Sign Up
                 </h2>
 
-                <div className="relative w-80 mb-10">
-                    <label
-                        htmlFor="name"
-                        className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
-                    >
-                        Name
-                    </label>
-
-                    <input
-                        id="name"
-                        type="text"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        placeholder="Enter your Name"
-                        className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-                </div>
-                <div className="relative w-80 mb-10">
-                    <label
-                        htmlFor="email"
-                        className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
-                    >
-                        Email
-                    </label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        placeholder="Enter your Email"
-                        className="w-full border border-gray-600  px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-                </div>
-                <div className="relative w-80 mb-6">
-                    <label
-                        htmlFor="password"
-                        className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
-                    >
-                        Password
-                    </label>
-
-                    <input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                        placeholder="Enter your password"
-                        className="w-full border border-gray-600  px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                    />
-
-                    {password.length > 0 && (
-                        <button
-                            type="button"
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-                            onClick={() => setShowPassword(!showPassword)}
-                            aria-label={showPassword ? "Hide password" : "Show password"}
+                <form onSubmit={handleSignup} className="flex flex-col items-center">
+                    <div className="relative w-80 mb-10">
+                        <label
+                            htmlFor="name"
+                            className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
                         >
-                            <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
-                        </button>
+                            Name
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                            placeholder="Enter your Name"
+                            required
+                            autoComplete="name"
+                            className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                        />
+                    </div>
+
+                    <div className="relative w-80 mb-10">
+                        <label
+                            htmlFor="email"
+                            className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                        >
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                            placeholder="Enter your Email"
+                            required
+                            autoComplete="email"
+                            className="w-full border border-gray-600 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                        />
+                    </div>
+
+                    <div className="relative w-80 mb-6">
+                        <label
+                            htmlFor="password"
+                            className="absolute -top-6 left-0 text-sm font-medium text-gray-700"
+                        >
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                            placeholder="Enter your password"
+                            required
+                            minLength={8}
+                            autoComplete="new-password"
+                            className="w-full border border-gray-600 px-4 py-2 pr-12 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                        />
+
+                        {password.length > 0 && (
+                            <button
+                                type="button"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                                onClick={() => setShowPassword(!showPassword)}
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                            >
+                                <i className={showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i>
+                            </button>
+                        )}
+                    </div>
+
+                    {errorMessage && (
+                        <p className="w-80 mb-4 text-sm text-red-600" role="alert">
+                            {errorMessage}
+                        </p>
                     )}
-                </div>
-                <button
-                    className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700"
-                    onClick={() => navigate('/dashboard')}
-                >
-                    Sign Up
-                </button>
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-80 max-w-full rounded-xl bg-blue-600 py-2.5 text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                        {loading ? 'Creating account...' : 'Sign Up'}
+                    </button>
+                </form>
 
                 {showToast && (
                     <div className="fixed left-1/2 top-6 z-50 -translate-x-1/2">
@@ -165,8 +224,8 @@ function Signup() {
                                     </svg>
                                 </div>
 
-                                <p className="ml-5 mt-2 text-base font-semibold text-slate-900 ">
-                                    Login Successfully
+                                <p className="ml-5 mt-2 text-base font-semibold text-slate-900">
+                                    Signup Successfully
                                 </p>
                             </div>
                         </div>
@@ -179,15 +238,19 @@ function Signup() {
                     className="w-80 max-w-full mt-4 flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 bg-white hover:bg-gray-100 transition"
                 >
                     <FcGoogle size={22} />
-                    <span className="font-medium text-gray-700">Continue with Google</span>
+                    <span className="font-medium text-gray-700">
+                        Continue with Google
+                    </span>
                 </button>
+
                 <div className="mt-4 flex items-center justify-center text-sm">
                     <span className="text-gray-700">
-                        Already have an account?
+                        Already have an account ?
                     </span>
 
                     <button
-                        onClick={() => navigate("/login")}
+                        type="button"
+                        onClick={() => navigate('/login')}
                         className="ml-2 text-blue-600 font-medium hover:text-blue-800 hover:underline -ml-1"
                     >
                         Login
@@ -195,6 +258,7 @@ function Signup() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
 export default Signup;
