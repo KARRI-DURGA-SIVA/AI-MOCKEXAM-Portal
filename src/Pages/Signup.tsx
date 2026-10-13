@@ -245,7 +245,7 @@ function Signup() {
 
                 <div className="mt-4 flex items-center justify-center text-sm">
                     <span className="text-gray-700">
-                        Already have an account?
+                        Already have an account ?
                     </span>
 
                     <button
