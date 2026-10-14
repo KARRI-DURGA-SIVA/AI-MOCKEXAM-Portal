@@ -35,7 +35,7 @@ function Login() {
         setShowToast(true);
 
         setTimeout(() => {
-            navigate('/dashboard');
+            navigate('/status');
         }, 1000);
     };
 
